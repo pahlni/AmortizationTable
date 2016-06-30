@@ -1,0 +1,96 @@
+CIS 263 Project/Assignment 1
+Name: ______________________
+Due Date 
+at the start of class on Monday, July 11.
+Before Starting the Project
+Read the entire project description before starting. This is an individual assignment.
+Learning Objectives
+After completing this project you should be able to implement basic C++ programs.
+Rubric
+25 pts commented and readable code________________
+25 pts elegant source code________________
+25 pts concise design________________
+25 pts results during testing________________
+
+Background
+Amortization tables provide the monthly or annual breakdown of the details related to mortgage, car, student, and personal loans. You will implement a simple loan class consisting of simple data types and functions (e.g., calculateMonthlyPayment and printAmortizationTable or similar). You may drive the program within the main function if needed. The exact design, data flow, and program control flow is up to you.
+Step 1: Gather data
+Ask the user (via the console) for a loan name/label, principle, annual interest rate (APR), number of months, and any extra (optional) payment the user will make every single month until it is paid off.
+Assume all values will be non-negative.
+Use at least one class as part of your solution, e.g., a loan class to manage a single loans data.
+Step 2: Monthly Payment Function
+Write a function to determine the minimum monthly payment based on the principle, rate, and number of months.
+Minimum monthly payment, M = rP(1+r)n / (-1+(1+r)n)
+As an example, a 5.49% interest rate might be entered as 5.49 or .0549, which is then divided by 12.0 to calculate r. Make it clear to the user at the command line how to format the interest rate (5.49 vs .0549).
+Testing:
+oM=$716.12, P=150000, r=.04/12, n=360
+oM=$482.80, P=50000, r=.03/12, n=120
+Step 3: Calculations and Pretty Printing
+Print the basic input back to the user for their selection.
+Print a header row for month number, principle remaining, monthly payment (only calculated once), amount in interest paid this month, amount towards the principle this month, total paid since month 1, total principle paid since month 1, and total interest paid since month 1.
+Calculate the minimum monthly payment. This is the only value that will not change each month.
+For each month (from month 1 up to n), calculate and append the amortization table details on one line.
+oInterest paid this month = p*r
+oPrinciple paid this month = M - p*r + extra payment
+Note: extra payment may be 0.0
+oPrinciple = principle - principle paid this month
+Note: display the principle that remains after the month is over, not the amount owed at the beginning of the month.
+oCalculate the running totals
+Total paid += interest paid + principle paid
+Total principle paid += principle paid this month
+Total interest paid += interest paid this month
+Note: if the user is paying extra each month, it will not require n months to pay off the loan. Your loop should stop after p=0, not after n loops.
+Note: make sure they do not overpay the last month if they do not owe a full monthly amount, e.g., add a check to change the last months payment so that p does not become negative.
+Step 4: Testing
+Test your program with any existing or future loans you might consider.
+Name your program using your last name, e.g., LeidigAssignment1.cpp. Bundle your program and turn in all files required to run your program. Also, include a sample output of your program with the following values: $180,000.0 - 4.0% - 360 months - $300 extra.
+Ensure you include suitable documentation for your 1) overall project of ~1 page and 2) source code. Include an appropriate comment block at the top of your program.
+Grading Criteria
+There is a 50% penalty on programming projects if your solution does not execute or generates errors. 
+There is a 50% penalty for not turning in both a softcopy and hardcopy in class 
+1Hardcopy (1st page of this document, 1 page overview, code, testing result with required input data) 
+2Softcopy (zipped if needed) to blackboard of only your code
+Any options/approaches/requirements not specified in this document are left for your own decision making, in keeping with the spirit of the assignment.
+Late Policy
+Projects are due at the START of the class period and not accepted later. Not turning in the hard copy or soft copy by the due date is considered a late/missing project unless PRIOR arrangements are made.
+Example Output (exact format not required)
+****************************************************
+* student loan - 15000.00 - 36 - 6.0% - 0.00 extra *
+****************************************************
+monthmonthly_paymentprincipleRemainingprinciplePaidinterestPaidtotalPaidtotalPrinciplePaidtotalInterestPaid
+0456.3214618.67381.3275.00456.32381.3275.00
+1456.3214235.43383.2373.09912.65764.56148.09
+2456.3213850.28385.1571.171368.981149.71219.27
+3456.3213463.20387.0769.251825.311536.79288.52
+4456.3213074.19389.0167.312281.641925.80355.83
+5456.3212683.23390.9565.372737.972316.76421.20
+6456.3212290.32392.9163.413194.302709.67484.62
+7456.3211895.44394.8761.453650.633104.55546.07
+8456.3211498.59396.8559.474106.963501.40605.55
+9456.3211099.75398.8357.494563.293900.24663.04
+10456.3210698.92400.8355.495019.614301.07718.54
+11456.3210296.09402.8353.495475.944703.90772.04
+12456.329891.24404.8451.485932.275108.75823.52
+13456.329484.37406.8749.456388.605515.62872.97
+14456.329075.46408.9047.426844.935924.53920.39
+15456.328664.51410.9545.377301.266335.48965.77
+16456.328251.50413.0043.327757.596748.491009.09
+17456.327836.43415.0741.258213.927163.561050.35
+18456.327419.28417.1439.188670.257580.711089.53
+19456.327000.05419.2337.099126.587999.941126.63
+20456.326578.72421.3235.009582.918421.271161.63
+21456.326155.28423.4332.8910039.238844.711194.52
+22456.325729.73425.5530.7710495.569270.261225.30
+23456.325302.05427.6828.6410951.899697.941253.95
+24456.324872.23429.8126.5111408.2210127.761280.46
+25456.324440.26431.9624.3611864.5510559.731304.82
+26456.324006.14434.1222.2012320.8810993.851327.02
+27456.323569.84436.2920.0312777.2111430.151347.05
+28456.323131.36438.4717.8413233.5411868.631364.90
+29456.322690.69440.6715.6513689.8712309.301380.56
+30456.322247.81442.8713.4514146.2012752.181394.01
+31456.321802.72445.0811.2314602.5213197.271405.25
+32456.321355.41447.319.0115058.8513644.581414.26
+33456.32905.85449.556.7715515.1814094.141421.04
+34456.32454.05451.794.5215971.5114545.941425.57
+35456.320.00454.052.2716427.8414999.991427.84
