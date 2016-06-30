@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <math.h>
 
 using namespace std;
 
@@ -10,8 +11,8 @@ class Loan{
   int months;
 public:
   Loan();
-  void test(){
-    cout << name << principle << apr << months << endl;
+  double monthPay(){
+    return ((apr/12) * principle * pow(1 + (apr/12),months)) / (-1 + pow( 1 + (apr/12),months));
   }
 };
 
@@ -20,7 +21,7 @@ Loan::Loan() {
   cin >> name;
   cout << "Please enter the principle: ";
   cin >> principle;
-  cout << "Please enter the APR (XX.XX%): ";
+  cout << "Please enter the APR (0.XXXX): ";
   cin >> apr;
   cout << "Please enter the number of months: ";
   cin >> months;
@@ -30,7 +31,7 @@ Loan::Loan() {
 int main(){
 
   Loan loan;
-  loan.test();
+  cout << loan.monthPay() << endl;
   return 0;
 
 }
