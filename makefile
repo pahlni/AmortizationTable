@@ -1,9 +1,9 @@
 CC=g++
-
+CFLAGS=-std=c++11
 all : AmorizationTable
 
 AmorizationTable: AmorizationTable.o
-	$(CC) AmorizationTable.o -o AmorizationTable
+	$(CC) $(CFLAGS) AmorizationTable.o -o AmorizationTable
 
 AmorizationTable.o: AmorizationTable.cpp
-	$(CC) -c AmorizationTable.cpp
+	$(CC) $(CFLAGS) -c AmorizationTable.cpp
