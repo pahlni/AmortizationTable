@@ -1,11 +1,15 @@
 #include <iostream>
 #include <string>
 #include <math.h>
+#include <iomanip>
 
 using namespace std;
 
 class Loan{
-  string name;
+
+  const char sep = ' ';
+  const int width = 15;
+  char name[100];
   double principle;
   double apr;
   int months;
@@ -19,7 +23,7 @@ public:
 
 Loan::Loan() {
   cout << "Please enter the name of the Loan: ";
-  cin >> name;
+  cin.getline(name, 100);
   cout << "Please enter the principle: ";
   cin >> principle;
   cout << "Please enter the APR (0.XXXX): ";
@@ -32,7 +36,15 @@ void Loan::printTable () {
   cout << "*******************************************" << endl;
   cout << "* " << name << " - " << principle << " - " << months << " - " << apr * 100 << "% *" << endl;
   cout << "*******************************************" << endl;
-  cout << "month\tmonthly payment\tprinciple remaining\tprinciple paid\tinterest paid\ttotal paid\ttotal principle paid\ttotal interest paid" << endl;
+  
+  cout << left << setw(width) << setfill(sep) << "month";
+  cout << left << setw(width) << setfill(sep) << "monthly pay";
+  cout << left << setw(width) << setfill(sep) << "pri remain";
+  cout << left << setw(width) << setfill(sep) << "pri paid";
+  cout << left << setw(width) << setfill(sep) << "int paid";
+  cout << left << setw(width) << setfill(sep) << "total paid";
+  cout << left << setw(width) << setfill(sep) << "total pri paid";
+  cout << left << setw(width) << setfill(sep) << "total int paid" << endl;
 
   double monthPayment = monthPay();
   double remPrinciple = principle;
@@ -41,6 +53,9 @@ void Loan::printTable () {
   double totalPaid;
   double totalPriPay;
   double totalIntPay;
+
+  cout.setf(ios_base::fixed, ios_base::floatfield);
+  cout.precision(2);
 
   int month;
 
@@ -52,7 +67,14 @@ void Loan::printTable () {
     totalPriPay += principleThisMonth;
     totalIntPay += interestThisMonth;
     
-    cout << month << "\t" << monthPayment << "\t\t" << remPrinciple << "\t\t\t" << principleThisMonth << "\t\t" << interestThisMonth << "\t\t" << totalPaid << "\t\t" << totalPriPay << "\t\t\t" << totalIntPay << endl;
+    cout << left << setw(width) << setfill(sep) << month;
+    cout << left << setw(width) << setfill(sep) << monthPayment;
+    cout << left << setw(width) << setfill(sep) << remPrinciple;
+    cout << left << setw(width) << setfill(sep) << principleThisMonth;
+    cout << left << setw(width) << setfill(sep) << interestThisMonth;
+    cout << left << setw(width) << setfill(sep) << totalPaid;
+    cout << left << setw(width) << setfill(sep) << totalPriPay;
+    cout << left << setw(width) << setfill(sep) << totalIntPay << endl;
   }
 }
 
