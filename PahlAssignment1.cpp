@@ -1,3 +1,11 @@
+/**
+ * File for creating an Amortization Table from user input.
+ *
+ * @file AmorizationTable.c
+ * @author Nicholas Pahl
+ * @date July 11, 2016
+ */
+
 #include <iostream>
 #include <string>
 #include <math.h>
@@ -5,6 +13,9 @@
 
 using namespace std;
 
+/**
+ * Class containing loan functions.
+ */ 
 class Loan{
 
   const char sep = ' ';
@@ -14,13 +25,17 @@ class Loan{
   double apr;
   int months;
 public:
+  //constructor for loan.
   Loan();
+  //calculates monthly pay.
   double monthPay(){
     return ((apr/12) * principle * pow(1 + (apr/12),months)) / (-1 + pow( 1 + (apr/12),months));
   }
+  //displays table
   void printTable ();
 };
 
+//gets info from user 
 Loan::Loan() {
   cout << "Please enter the name of the Loan: ";
   cin.getline(name, 100);
@@ -33,10 +48,12 @@ Loan::Loan() {
 }
 
 void Loan::printTable () {
+  //table info print
   cout << "*******************************************" << endl;
   cout << "* " << name << " - " << principle << " - " << months << " - " << apr * 100 << "% *" << endl;
   cout << "*******************************************" << endl;
   
+  //table header print
   cout << left << setw(width) << setfill(sep) << "month";
   cout << left << setw(width) << setfill(sep) << "monthly pay";
   cout << left << setw(width) << setfill(sep) << "pri remain";
@@ -59,6 +76,7 @@ void Loan::printTable () {
 
   int month;
 
+  //print all the rows
   for(month = 0; month < months; month++){
     interestThisMonth = remPrinciple * (apr / 12);
     principleThisMonth = monthPayment - interestThisMonth;
@@ -79,8 +97,9 @@ void Loan::printTable () {
 }
 
 int main(){
-
+  //gathers loan info
   Loan loan;
+  //prints table
   loan.printTable();
   return 0;
 
