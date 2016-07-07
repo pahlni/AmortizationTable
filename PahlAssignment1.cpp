@@ -65,11 +65,11 @@ void Loan::printTable () {
 
   double monthPayment = monthPay();
   double remPrinciple = principle;
-  double interestThisMonth;
-  double principleThisMonth;
-  double totalPaid;
-  double totalPriPay;
-  double totalIntPay;
+  double interestThisMonth = 0;
+  double principleThisMonth = 0;
+  double totalPaid = 0;
+  double totalPriPay = 0;
+  double totalIntPay = 0;
 
   cout.setf(ios_base::fixed, ios_base::floatfield);
   cout.precision(2);
