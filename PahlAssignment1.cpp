@@ -24,6 +24,7 @@ class Loan{
   double principle;
   double apr;
   int months;
+  double extra;
 public:
   //constructor for loan.
   Loan();
@@ -45,12 +46,18 @@ Loan::Loan() {
   cin >> apr;
   cout << "Please enter the number of months: ";
   cin >> months;
+  cout << "Please enter the amount extra willing to pay each month: ";
+  cin >> extra;
 }
 
 void Loan::printTable () {
+  //prints floats with 2 decimal points
+  cout.setf(ios_base::fixed, ios_base::floatfield);
+  cout.precision(2);
+
   //table info print
   cout << "*******************************************" << endl;
-  cout << "* " << name << " - " << principle << " - " << months << " - " << apr * 100 << "% *" << endl;
+  cout << "* " << name << " - " << principle << " - " << months << " - " << apr * 100 << "% - " << extra << " extra *" << endl;
   cout << "*******************************************" << endl;
   
   //table header print
@@ -70,17 +77,24 @@ void Loan::printTable () {
   double totalPaid = 0;
   double totalPriPay = 0;
   double totalIntPay = 0;
-
-  cout.setf(ios_base::fixed, ios_base::floatfield);
-  cout.precision(2);
+ 
 
   int month;
 
   //print all the rows
-  for(month = 0; month < months; month++){
+  for(month = 0; month < months && remPrinciple != 0; month++){
     interestThisMonth = remPrinciple * (apr / 12);
-    principleThisMonth = monthPayment - interestThisMonth;
-    remPrinciple -= principleThisMonth;
+    principleThisMonth = monthPayment - interestThisMonth + extra;
+
+    //catches the last amount to be paid
+    if(principleThisMonth > remPrinciple){
+      principleThisMonth = remPrinciple;
+      remPrinciple = 0;
+      monthPayment = principleThisMonth + interestThisMonth;
+    }
+    else{
+      remPrinciple -= principleThisMonth;
+    }
     totalPaid += interestThisMonth + principleThisMonth;
     totalPriPay += principleThisMonth;
     totalIntPay += interestThisMonth;
